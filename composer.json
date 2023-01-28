@@ -1,14 +1,18 @@
 {
     "name": "nulls/php-blog",
-    "description": "PHP blog",
+    "autoload": {
+        "psr-4": {
+            "Nulls\\PhpBlog\\": "src/"
+        }
+    },
     "authors": [
         {
             "name": "Null-ch",
             "email": "zuxobot@yandex.ru"
         }
     ],
-    "minimum-stability": "stable",
     "require": {
-        "slim/slim": "4.*"
+        "slim/slim": "4.*",
+        "slim/psr7": "^1.6"
     }
 }
