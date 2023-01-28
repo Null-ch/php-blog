@@ -1,0 +1,14 @@
+{
+    "name": "nulls/php-blog",
+    "description": "PHP blog",
+    "authors": [
+        {
+            "name": "Null-ch",
+            "email": "zuxobot@yandex.ru"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "slim/slim": "4.*"
+    }
+}
