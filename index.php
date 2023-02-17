@@ -1,11 +1,13 @@
 <?php
 
+use Nulls\PhpBlog\LatestPosts;
 use Nulls\PhpBlog\PostMapper;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Factory\AppFactory;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
+
 require __DIR__ . '/vendor/autoload.php';
 
 $loader = new FilesystemLoader('templates');
@@ -30,20 +32,17 @@ $postMapper = new PostMapper($connection);
 //create app
 $app = AppFactory::create();
 
-$app->get(
-    '/',
-    function (Request $request, Response $response, $args)
-    use ($view, $postMapper)
-    {
-        $posts = $postMapper->getList('DESC');
+$app->get('/', function (Request $request, Response $response)
+use ($view, $connection) {
+    $latestPosts = new LatestPosts($connection);
+    $posts = $latestPosts->get(3);
 
-        $body = $view->render('index.twig', [
-            'posts' => $posts
-        ]);
-        $response->getBody()->write($body);
-        return $response;
-    }
-);
+    $body = $view->render('index.twig', [
+        'posts' => $posts
+    ]);
+    $response->getBody()->write($body);
+    return $response;
+});
 
 $app->get('/about', function (Request $request, Response $response, $args) use ($view) {
     $body = $view->render('about.twig', ['name' => 'Гость']);
