@@ -2,8 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d1b94f03-3ce6-43a4-8ed6-e657be405225" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/LatestPosts.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Slim/TwigMiddleware.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Twig/AssetExtension.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/blog.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/section/about.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/section/pagination.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/section/posts.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LatestPosts.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/LatestPosts.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PostMapper.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/PostMapper.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/about.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/about.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/section/navigation.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/section/navigation.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,6 +68,11 @@
     <property name="settings.editor.selected.configurable" value="inlay.hints.PHP" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\OSPanel\domains\php-blog\templates\section" />
+    </key>
+  </component>
   <component name="RunManager" selected="PHP Script.PostMapper.php">
     <configuration name="php-blog" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner directory="$PROJECT_DIR$" />
@@ -82,7 +100,10 @@
       <workItem from="1674988810806" duration="68000" />
       <workItem from="1675444413307" duration="71000" />
       <workItem from="1675520885150" duration="35000" />
-      <workItem from="1676614845698" duration="11139000" />
+      <workItem from="1676614845698" duration="11775000" />
+      <workItem from="1676643357700" duration="1473000" />
+      <workItem from="1676645519244" duration="31000" />
+      <workItem from="1676735278092" duration="4623000" />
     </task>
     <servers />
   </component>

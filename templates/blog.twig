@@ -1,0 +1,15 @@
+{% extends 'base.twig' %}
+
+{% block body %}
+    <h3 class="mb-3 mt-3">Все записи блога</h3>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                {% include 'section/posts.twig' with posts%}
+                <div class="row">
+                    {% include 'section/pagination.twig' %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

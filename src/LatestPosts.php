@@ -27,9 +27,7 @@ class LatestPosts
     public function get(int $limit): ?array
     {
         $statement = $this->connection->prepare(
-            'SELECT * FROM post '
-            . 'ORDER BY published_date '
-            . 'DESC LIMIT ' . $limit
+            'SELECT * FROM post ORDER BY published_date DESC LIMIT ' . $limit
         );
 
         $statement->execute();

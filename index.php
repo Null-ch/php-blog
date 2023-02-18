@@ -2,6 +2,8 @@
 
 use Nulls\PhpBlog\LatestPosts;
 use Nulls\PhpBlog\PostMapper;
+use Nulls\PhpBlog\Slim\TwigMiddleware;
+use Nulls\PhpBlog\Twig\AssetExtension;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Factory\AppFactory;
@@ -23,17 +25,16 @@ try {
     $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $connection->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 } catch (PDOException $exception) {
-    echo 'Ошибка подключения к БД ' . $exception->getMessage();
+    echo 'Database error: ' . $exception->getMessage();
     die();
 }
 
-$postMapper = new PostMapper($connection);
-
-//create app
+// Create app
 $app = AppFactory::create();
 
-$app->get('/', function (Request $request, Response $response)
-use ($view, $connection) {
+$app->add(new TwigMiddleware($view));
+
+$app->get('/', function (Request $request, Response $response) use ($view, $connection) {
     $latestPosts = new LatestPosts($connection);
     $posts = $latestPosts->get(3);
 
@@ -44,15 +45,34 @@ use ($view, $connection) {
     return $response;
 });
 
-$app->get('/about', function (Request $request, Response $response, $args) use ($view) {
-    $body = $view->render('about.twig', ['name' => 'Гость']);
+$app->get('/about', function (Request $request, Response $response) use ($view) {
+    $body = $view->render('about.twig', [
+        'name' => 'Max'
+    ]);
     $response->getBody()->write($body);
     return $response;
 });
 
-$app->get('/{url_key}', function (Request $request, Response $response, $args) use ($view, $postMapper) {
+$app->get('/blog[/{page}]', function (Request $request, Response $response, $args) use ($view, $connection) {
+    $latestPosts = new PostMapper($connection);
+
+    $page = isset($args['page']) ? (int) $args['page'] : 1;
+    $limit = 2;
+
+    $posts = $latestPosts->getList($page, $limit, 'DESC');
+
+    $body = $view->render('blog.twig', [
+        'posts' => $posts
+    ]);
+    $response->getBody()->write($body);
+    return $response;
+});
+
+$app->get('/{url_key}', function (Request $request, Response $response, $args) use ($view, $connection) {
+    $postMapper = new PostMapper($connection);
     $post = $postMapper->getByUrlKey((string) $args['url_key']);
-    if(empty($post)) {
+
+    if (empty($post)) {
         $body = $view->render('not-found.twig');
     } else {
         $body = $view->render('post.twig', [
